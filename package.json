@@ -1,0 +1,35 @@
+{
+  "name": "coupon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "antd": "^2.9.0",
+    "axios": "^0.16.1",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-react-html-attrs": "^2.0.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babelify": "^7.3.0",
+    "bootstrap": "^3.3.7",
+    "css-loader": "^0.28.0",
+    "jweixin": "^1.0.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-jweixin": "^1.0.0",
+    "react-mixin": "^2.0.2",
+    "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0",
+    "style-loader": "^0.16.1",
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.2",
+    "weixin-jsapi": "^1.1.0",
+    "whatwg-fetch": "^2.0.3"
+  }
+}

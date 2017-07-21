@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<div id="app">
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    (function($){
+        $('document').ready(function(){
+            $('#app').append('<div><h4>Navigator</h4></div>');
+            for (var nav in navigator) {
+                if (typeof navigator[nav] == 'string') {
+                    $('#app').append('<div><b>' + nav + ': </b>' + navigator[nav] + '</div>');
+                }
+            }
+
+            $('#app').append('<div><h4>Window Properties</h4></div>');
+            for (var win in window) {
+                $('#app').append('<div>' + win + '</div>');
+            }
+
+            $('#app').append('<div><h4>__wxjs_js_wkwebview</h4></div>');
+            for (var wxjs in window.__wxjs_js_wkwebview.__proto__) {
+                $('#app').append('<div>' + wxjs + '</div>');
+            }
+
+            $('#app').append('<div><h4>weixinPostMessageHandlers</h4></div>');
+            for (var wxjs in window.weixinPostMessageHandlers) {
+                $('#app').append('<div>' + wxjs + '</div>');
+            }
+        });
+    })(jQuery);
+</script>
+</body>
+</html>
