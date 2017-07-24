@@ -39,7 +39,7 @@ export default class Config
             redirect_uri:    this._weChatConfig.redirectUri,
             response_type:  'code',
             scope:          'snsapi_login',
-            state:          10
+            state:          'dev' //dev or 0 for production
         };
 
         let paramsStr = '';
