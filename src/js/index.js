@@ -10,21 +10,8 @@ import GroupBuyRefundList from './components/group_buy/product_list/GroupBuyRefu
 import GroupBuySuccessfulList from './components/group_buy/product_list/GroupBuySuccessfulList';
 
 import ProductDetail from './components/group_buy/ProductDetail';
-
-// import BodyCoupon from './components/coupon/BodyCoupon';
-// import BodyStore from './components/store/BodyStore';
-// import BodyMessage from './components/message/BodyMessage';
-//
-// import Profile from './components/user/Profile';
 import Login from './components/user/Login';
 import LoginWechat from './components/user/LoginWechat';
-// import CouponDetail from './components/coupon/CouponDetail';
-// import StoreDetail from './components/store/StoreDetail';
-// import CouponFriendDetail from './components/coupon/CouponFriendDetail';
-// import CouponScanDetail from './components/coupon/CouponScanDetail';
-// import CouponMessageDetail from './components/coupon/CouponMessageDetail';
-//
-// import StoreCouponDetail from './components/store/StoreCouponDetail';
 
 import { HashRouter,Route, hashHistory } from 'react-router-dom'
 
