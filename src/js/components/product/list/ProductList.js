@@ -5,10 +5,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import CouponListShopperName from './parts/CouponListShopperName';
-import Config from '../Config';
+import ProductListProductName from './parts/ProductListProductName';
+import Config from './../../Config';
 
-export default class CouponCouponsList extends React.Component {
+
+export default class ProductList extends React.Component {
 
     constructor(props){
 
@@ -30,7 +31,7 @@ export default class CouponCouponsList extends React.Component {
         const apiUrl = config.baseUrl;
         const userId = window.localStorage.getItem('user_id');
 
-        axios.get(apiUrl + 'coupon/consumer-coupon/rest/0', {
+        axios.get(apiUrl + 'group-buy/group-buy-template/rest/0', {
             params: {
                 method:         'LIST',
                 page:           this.state.page,
@@ -38,12 +39,11 @@ export default class CouponCouponsList extends React.Component {
                 consumerId:     userId
             }
         }).then(response => {
-            console.log(response.data.items);
+
             this.setState({countPages:response.data.count_pages});
             this.setState({items: response.data.items});
             this.setState({status: 'List empty'});
 
-            console.log(this.state);
         }).catch(function(error){
             console.log(error);
         });
@@ -82,43 +82,48 @@ export default class CouponCouponsList extends React.Component {
     }
 
     render(){
-        if (this.state.items.length > 0) {
 
+        if (this.state.items.length > 0) {
+            console.log(this.state.items);
             return (
                 <div>
                     {
                         this.state.items.map((item, index) =>
+
                             <div key={index} className="zan-card zan-card-1 zan-container-content">
-                                <Link to={`/coupon/${item.issued_coupon.id}`}>
-                                    <CouponListShopperName item={item}/>
+
+                                <Link to={`/group-buy/product-detail/${item.groupBuyTemplate.product.id}`}>
+                                    <ProductListProductName item={item}/>
 
                                     <div className="zan-wrap-content">
-                                        <strong>{item.issued_coupon.coupon.shopper.name}</strong>
-                                        <p>{item.issued_coupon.coupon.title}</p>
+                                        <strong>{item.groupBuyTemplate.product.name}</strong>
+                                        <p>Original Price: {item.groupBuyTemplate.product.price}$</p>
+                                        <p>Group Buy Price: {item.groupBuyTemplate.price}$</p>
                                         <div>
                                             {/*<i className="fa">*/}
-                                                {/*<img className="footer-menu-icon" src="images/zan-icon/coupon.png" width="24" height="24" alt=""/>*/}
+                                            {/*<img className="footer-menu-icon" src="images/zan-icon/coupon.png" width="24" height="24" alt=""/>*/}
                                             {/*</i>*/}
-                                            <span className="qty">{ item.startTimeFormat } - { item.expiredTimeFormat }</span>
+                                            <span className="qty">{ item.dateExpiredFormat}</span>
                                             <hr style={{marginTop: '0px', marginBottom: '0px'}}/>
-                                            {
-                                                JSON.parse(item.issued_coupon.source).headimgurl && (
-                                                    <div>
-                                                        {/*<img className="quote-image"*/}
-                                                             {/*src={ JSON.parse(item.issued_coupon.source).headimgurl } width={'30px'} alt=""/>*/}
-                                                        <p><b>收到: </b> {JSON.parse(item.issued_coupon.source).nickname}</p>
-                                                    </div>
-                                                )
-                                            }
+                                            {/*{*/}
+                                            {/*JSON.parse(item.issued_coupon.source).headimgurl && (*/}
+                                            {/*<div>*/}
+                                            {/*/!*<img className="quote-image"*!/*/}
+                                            {/*/!*src={ JSON.parse(item.issued_coupon.source).headimgurl } width={'30px'} alt=""/>*!/*/}
+                                            {/*<p><b>收到: </b> {JSON.parse(item.issued_coupon.source).nickname}</p>*/}
+                                            {/*</div>*/}
+                                            {/*)*/}
+                                            {/*}*/}
                                             <hr style={{marginTop: '0px', marginBottom: '0px'}}/>
                                             <div className="container" style={{marginBottom: '0px', paddingLeft: '0px'}}>
                                                 <div className="one-half" style={{width: '89px'}}>
-                                                    {item.issued_coupon.isRedeemed && (<span className="label label-danger">赎回</span>)}
-                                                    {!item.issued_coupon.isRedeemed && (<p>&nbsp;</p>)}
+                                                    {/*{item.issued_coupon.isRedeemed && (<span className="label label-danger">赎回</span>)}*/}
+                                                    {/*{!item.issued_coupon.isRedeemed && (<p>&nbsp;</p>)}*/}
+                                                    <p>&nbsp;</p>
                                                 </div>
                                                 <div className="one-half last-column">
-                                                    <p style={{marginLeft: '50px', width: '50px'}}>
-                                                        详情
+                                                    <p style={{marginLeft: '10px', width: '90px'}}>
+                                                        Group Buy
                                                         <span style={{paddingTop: '3px'}} className="fa fa-chevron-right" aria-hidden="true"></span>
                                                     </p>
                                                 </div>
@@ -126,6 +131,7 @@ export default class CouponCouponsList extends React.Component {
                                         </div>
                                     </div>
                                 </Link>
+
                             </div>
                         )
 
@@ -140,5 +146,6 @@ export default class CouponCouponsList extends React.Component {
                 </div>
             );
         }
+
     }
 }

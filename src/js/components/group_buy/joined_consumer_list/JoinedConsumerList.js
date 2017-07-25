@@ -143,6 +143,9 @@ export default class JoinedConsumerList extends React.Component {
                             <div className="footer footer-light"></div>
                         </div>
                     </div>
+
+                    <Menu/>
+
                     <div className="background"></div>
                 </div>
             );

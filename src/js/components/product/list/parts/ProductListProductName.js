@@ -3,9 +3,9 @@
  */
 
 import React from 'react';
-import Config from '../../Config';
+import Config from './../../../Config';
 
-export default class CouponListShopperName extends React.Component {
+export default class ProductListProductName extends React.Component {
 
     constructor(props){
         super(props);
@@ -26,13 +26,11 @@ export default class CouponListShopperName extends React.Component {
     render(){
         const config = new Config();
 
-        if (this.state.item.issued_coupon.coupon.shopper.logo != "") {
+        if (this.state.item.groupBuyTemplate.product.images.length > 0) {
             return (
-
-                    <div style={{width:'100px', float: 'left', marginTop: '8%'}}>
-                        <img  style={{width:'100px'}} className="preload-image" data-original={`${config.baseImagePath}logos/${this.state.item.issued_coupon.coupon.shopper.logo}`} alt="img"/>
-                    </div>
-
+                <div style={{width:'100px', float: 'left', marginTop: '8%'}}>
+                    <img  style={{width:'100px'}} className="preload-image" data-original={`${config.baseImagePath}logos/${this.state.item.groupBuyTemplate.product.images[0]}`} alt="img"/>
+                </div>
             );
         } else {
             return (

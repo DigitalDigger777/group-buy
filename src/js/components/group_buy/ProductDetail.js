@@ -116,7 +116,7 @@ export default class ProductDetail extends React.Component {
                         </div>
                     </div>
 
-                    {/*<Menu/>*/}
+                    <Menu/>
 
                     <div className="background"></div>
                 </div>

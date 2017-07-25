@@ -103,7 +103,7 @@ export default class BodyGroupBuy extends React.Component {
                         </div>
                     </div>
 
-                    {/*<Menu/>*/}
+                    <Menu/>
 
                     <div className="background"></div>
                 </div>

@@ -3,7 +3,8 @@
  */
 
 import React from 'react';
-import CouponList from './CouponList';
+import ProductList from './list/ProductList';
+
 import PageLoader from '../parts/PageLoader';
 import Menu from '../parts/Menu';
 import {Link} from 'react-router-dom';
@@ -12,23 +13,12 @@ import SentCouponToFriendPopup from '../popup/SentCouponToFriendPopup';
 import Config from '../Config';
 import axios from 'axios';
 
-export default class BodyCoupon extends React.Component {
+export default class BodyProduct extends React.Component {
 
     constructor(props){
         super(props);
 
-        let tab = 'coupons';
-
-        if (props.location.pathname == '/coupon/friend/list') {
-            tab = 'friends';
-        }
-
-        if (props.location.pathname == '/') {
-            tab = 'coupons';
-        }
-
         this.state = {
-            tab: tab,
             user: null,
             status: 'Component will mount'
         };
@@ -43,11 +33,9 @@ export default class BodyCoupon extends React.Component {
         const user      = matchUser ? JSON.parse(decodeURI(matchUser[1])) : null;
         this.state.user = window.localStorage.getItem('user') ? JSON.parse(window.localStorage.getItem('user')) : null;
 
-
         if (user == null && this.state.user == null) {
             this.state.status = '';
-            alert(config.buildAuthUrl());
-            //window.location = config.buildAuthUrl();
+            window.location = config.buildAuthUrl();
         }
 
         if (user != null) {
@@ -82,20 +70,20 @@ export default class BodyCoupon extends React.Component {
 
                     <div id="page-content" className="page-content fadeIn page-content show-containers">
                         <div id="page-content-scroll">
-                            <div className="content">
-                                <div className="home-tabs">
-                                    <Link to={'/'}
-                                          className={`activate-tab-2 ${this.state.tab == 'coupons' ? 'active-home-tab' : ''}`}>Active</Link>
-                                    <Link to={'/coupon/friend/list'}
-                                          className={`activate-tab-3 ${this.state.tab == 'friends' ? 'active-home-tab' : ''}`}>Successful</Link>
-                                    <Link to={'/coupon/friend/list'}
-                                          className={`activate-tab-4 ${this.state.tab == 'friends' ? 'active-home-tab' : ''}`}>Refund</Link>
-                                    <div className="clear"></div>
-                                </div>
-                            </div>
+                            {/*<div className="content">*/}
+                                {/*<div className="home-tabs">*/}
+                                    {/*<Link to={'/'}*/}
+                                          {/*className={`activate-tab-2 ${this.state.tab == 'active' ? 'active-home-tab' : ''}`}>Active</Link>*/}
+                                    {/*<Link to={'/group-buy/successful-list'}*/}
+                                          {/*className={`activate-tab-3 ${this.state.tab == 'successful' ? 'active-home-tab' : ''}`}>Successful</Link>*/}
+                                    {/*<Link to={'/group-buy/refund-list'}*/}
+                                          {/*className={`activate-tab-4 ${this.state.tab == 'refund' ? 'active-home-tab' : ''}`}>Refund</Link>*/}
+                                    {/*<div className="clear"></div>*/}
+                                {/*</div>*/}
+                            {/*</div>*/}
 
                             <div className="content" id="tab-1">
-                                <CouponList tab={this.state.tab} />
+                                <ProductList />
                             </div>
 
                             <div className="footer footer-light"></div>

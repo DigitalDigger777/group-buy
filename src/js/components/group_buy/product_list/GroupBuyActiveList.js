@@ -87,6 +87,7 @@ export default class GroupBuyActiveList extends React.Component {
                 <div>
                     {
                         this.state.items.map((item, index) =>
+
                             <div key={index} className="zan-card zan-card-1 zan-container-content">
 
                                 <Link to={ item.groupBuy.consumers.length == 0 ? `/group-buy/product-detail/${item.groupBuy.groupBuyTemplate.product.id}` : `/group-buy/joined-consumer-list/${item.groupBuy.id}`}>
@@ -137,6 +138,7 @@ export default class GroupBuyActiveList extends React.Component {
                                         </div>
                                     </div>
                                 </Link>
+
                             </div>
                         )
 

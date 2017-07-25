@@ -10,7 +10,7 @@ export default class Config
         this._baseFrontUrl = 'http://dev.kankan-mobile/';
         this._weChatConfig = {
             appid:'wx9d75b312364c1703',
-            redirectUri: 'http://coupon.ppcgclub.com/auth.html',
+            redirectUri: 'http://coupon.ppcgclub.com/auth_group_buy.html',
             oa_appid: 'wx26a0d7b9dc4dd614',
             signature: '5e2e785a7e7d3618ad3629a5e1e95c082169f305'
         }
