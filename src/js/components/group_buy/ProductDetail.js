@@ -5,7 +5,7 @@
 import React from 'react';
 import axios from 'axios';
 import PageLoader from '../parts/PageLoader';
-// import Menu from '../parts/Menu';
+import Menu from '../parts/Menu';
 import Config from '../Config';
 // import RedeemCouponPopup from '../popup/RedeemCouponPopup';
 
