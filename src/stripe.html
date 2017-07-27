@@ -132,6 +132,7 @@
         }
     </style>
     <script src="./scripts/jquery.js"></script>
+    <script src="./js/components/ConfigStripe.js"></script>
 </head>
 <body>
 
@@ -172,7 +173,7 @@
 
 
         //console.log(search);
-        var stripe = Stripe('pk_test_Rrkex0EsJiXPhtdONdIG9LcX');
+        var stripe = Stripe(configStripe.publicKey);
         var elements = stripe.elements();
 
         var card = elements.create('card', {
@@ -191,6 +192,7 @@
                 },
             }
         });
+
         card.mount('#card-element');
 
         function setOutcome(result) {
@@ -207,7 +209,7 @@
 
                 //result.token.id
                 $.ajax({
-                    url: 'https://coupon.ppcgclub.com/backend/group-buy/stripe',
+                    url: configStripe.baseUrl + 'backend/group-buy/stripe',
                     dataType: 'json',
                     method: 'post',
                     data: {
@@ -217,7 +219,7 @@
                     },
                     success: function (data) {
                         console.log(data);
-                        window.location = 'https://group-buy.ppcgclub.com';
+                        window.location = configStripe.baseFrontUrl;
                     },
                     error: function (error) {
                         console.log(error);
