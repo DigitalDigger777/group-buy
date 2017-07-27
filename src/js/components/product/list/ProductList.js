@@ -92,7 +92,7 @@ export default class ProductList extends React.Component {
 
                             <div key={index} className="zan-card zan-card-1 zan-container-content">
 
-                                <Link to={`/group-buy/product-detail/${item.groupBuyTemplate.product.id}`}>
+                                <Link to={`/group-buy/product-detail/${item.groupBuyTemplate.product.id}/${item.groupBuyTemplate.id}`}>
                                     <ProductListProductName item={item}/>
 
                                     <div className="zan-wrap-content">

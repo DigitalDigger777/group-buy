@@ -17,6 +17,7 @@ export default class ProductDetail extends React.Component {
 
         this.state = {
             productId: props.match.params.productId,
+            groupBuyTemplateId: props.match.params.groupBuyTemplateId,
             status: <img src={`${config.baseFrontUrl}images/preload.gif`} style={{ margin: '0 auto'}} width={'50px'} alt=""/>
         };
 
@@ -46,7 +47,13 @@ export default class ProductDetail extends React.Component {
         });
     }
 
-    redeem() {
+    redeem(e, groupBuyTemplateId) {
+
+        console.log(groupBuyTemplateId);
+        const config = new Config();
+        const userId = window.localStorage.getItem('user_id');
+
+        window.location = config.baseFrontUrl + 'stripe.html?groupBuyTemplateId=' + groupBuyTemplateId + '&userId=' + userId;
 
         $('#redeemCouponPopup').modal('show');
 
@@ -94,6 +101,11 @@ export default class ProductDetail extends React.Component {
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div style={{textAlign:'center', padding: '20px'}}>
+                                        <button id="redeemButton" className="btn btn-info" onClick={ (e, groupBuyTemplateId) => this.redeem(e, this.state.groupBuyTemplateId) } style={{ width: '90%', backgroundColor: '#887650', borderColor: '#887650'}}>Buy</button>
+                                    </div>
+
                                     {/*{!this.state.item.isRedeemed && this.state.daysLeft > 0 && (*/}
                                         {/*<div style={{textAlign:'center', padding: '20px'}}>*/}
                                             {/*<button id="redeemButton" className="btn btn-info" onClick={ this.redeem } style={{ width: '90%', backgroundColor: '#887650', borderColor: '#887650'}}>使用</button>*/}

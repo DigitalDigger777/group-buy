@@ -27,7 +27,7 @@ export default class Index extends React.Component{
                     <Route exact path="/group-buy/joined-consumer-list/:groupBuyId" component={JoinedConsumerList} />
 
                     <Route exact path="/group-buy/product-list" component={BodyProduct} />
-                    <Route exact path="/group-buy/product-detail/:productId" component={ProductDetail} />
+                    <Route exact path="/group-buy/product-detail/:productId/:groupBuyTemplateId" component={ProductDetail} />
                 </div>
             </HashRouter>
         )
