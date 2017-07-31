@@ -88,7 +88,7 @@ export default class GroupBuyRefundList extends React.Component {
                     {
                         this.state.items.map((item, index) =>
                             <div key={index} className="zan-card zan-card-1 zan-container-content">
-                                <Link to={`/group-buy/product-detail/${item.groupBuy.groupBuyTemplate.product.id}`}>
+                                <Link to={`/group-buy/joined-consumer-list/${item.groupBuy.id}`}>
                                     <GroupBuyListProductName item={item}/>
 
                                     <div className="zan-wrap-content">

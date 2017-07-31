@@ -8,6 +8,7 @@ import axios from 'axios';
 import JoinedConsumerName from './parts/JoinedConsumerName';
 import PageLoader from './../../parts/PageLoader';
 import Config from './../../Config';
+import Menu from '../../parts/Menu';
 
 
 export default class JoinedConsumerList extends React.Component {

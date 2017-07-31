@@ -4,6 +4,7 @@ import BodyGroupBuy from './components/group_buy/BodyGroupBuy';
 import BodyProduct from './components/product/BodyProduct';
 import JoinedConsumerList from './components/group_buy/joined_consumer_list/JoinedConsumerList';
 import ProductDetail from './components/group_buy/ProductDetail';
+import JoinProductDetail from './components/group_buy/JoinProductDetail';
 
 
 import { HashRouter,Route, hashHistory } from 'react-router-dom'
@@ -28,6 +29,7 @@ export default class Index extends React.Component{
 
                     <Route exact path="/group-buy/product-list" component={BodyProduct} />
                     <Route exact path="/group-buy/product-detail/:productId/:groupBuyTemplateId" component={ProductDetail} />
+                    <Route exact path="/group-buy/join-product-detail/:productId/:groupBuyId" component={JoinProductDetail} />
                 </div>
             </HashRouter>
         )

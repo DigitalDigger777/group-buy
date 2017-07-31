@@ -34,7 +34,7 @@ export default class GroupBuyListProductName extends React.Component {
             );
         } else {
             return (
-                <div style={{width:'100px', float: 'left', marginTop: '20px'}}>
+                <div style={{width:'100px', float: 'left', marginTop: '20px', marginLeft: '20px'}}>
                     <img className="preload-image" data-original={`images/zan-images/u150.png`} alt="img" />
                 </div>
             );

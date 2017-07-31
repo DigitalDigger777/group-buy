@@ -9,7 +9,7 @@ import Menu from '../parts/Menu';
 import Config from '../Config';
 // import RedeemCouponPopup from '../popup/RedeemCouponPopup';
 
-export default class ProductDetail extends React.Component {
+export default class JoinProductDetail extends React.Component {
 
     constructor(props){
         super(props);
@@ -17,7 +17,7 @@ export default class ProductDetail extends React.Component {
 
         this.state = {
             productId: props.match.params.productId,
-            groupBuyTemplateId: props.match.params.groupBuyTemplateId,
+            groupBuyId: props.match.params.groupBuyId,
             status: <img src={`${config.baseFrontUrl}images/preload.gif`} style={{ margin: '0 auto'}} width={'50px'} alt=""/>
         };
 
@@ -47,13 +47,13 @@ export default class ProductDetail extends React.Component {
         });
     }
 
-    redeem(e, groupBuyTemplateId) {
+    redeem(e, groupBuyId) {
 
-        console.log(groupBuyTemplateId);
+        console.log(groupBuyId);
         const config = new Config();
         const userId = window.localStorage.getItem('user_id');
 
-        window.location = config.baseFrontUrl + 'stripe.html?groupBuyTemplateId=' + groupBuyTemplateId + '&userId=' + userId;
+        window.location = config.baseFrontUrl + 'stripe.html?groupBuyId=' + groupBuyId + '&userId=' + userId;
 
         $('#redeemCouponPopup').modal('show');
 
@@ -103,7 +103,7 @@ export default class ProductDetail extends React.Component {
                                     </div>
 
                                     <div style={{textAlign:'center', padding: '20px'}}>
-                                        <button id="redeemButton" className="btn btn-info" onClick={ (e, groupBuyTemplateId) => this.redeem(e, this.state.groupBuyTemplateId) } style={{ width: '90%', backgroundColor: '#887650', borderColor: '#887650'}}>Buy</button>
+                                        <button id="redeemButton" className="btn btn-info" onClick={ (e, groupBuyId) => this.redeem(e, this.state.groupBuyId) } style={{ width: '90%', backgroundColor: '#887650', borderColor: '#887650'}}>Buy</button>
                                     </div>
 
                                     {/*{!this.state.item.isRedeemed && this.state.daysLeft > 0 && (*/}

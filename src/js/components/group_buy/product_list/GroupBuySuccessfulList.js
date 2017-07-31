@@ -88,7 +88,7 @@ export default class GroupBuySuccessfulList extends React.Component {
                     {
                         this.state.items.map((item, index) =>
                             <div key={index} className="zan-card zan-card-1 zan-container-content">
-                                <Link to={`/group-buy/product-detail/${item.groupBuy.groupBuyTemplate.product.id}`}>
+                                <Link to={`/group-buy/joined-consumer-list/${item.groupBuy.id}`}>
                                     <GroupBuyListProductName item={item}/>
 
                                     <div className="zan-wrap-content">
@@ -119,7 +119,7 @@ export default class GroupBuySuccessfulList extends React.Component {
                                                 </div>
                                                 <div className="one-half last-column">
                                                     <p style={{marginLeft: '10px', width: '90px'}}>
-                                                        Group Buy
+                                                        Joined
                                                         <span style={{paddingTop: '3px'}} className="fa fa-chevron-right" aria-hidden="true"></span>
                                                     </p>
                                                 </div>

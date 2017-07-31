@@ -34,7 +34,7 @@ export default class GroupBuyActiveList extends React.Component {
             params: {
                 method:         'LIST',
                 page:           this.state.page,
-                items_on_page:  5,
+                items_on_page:  100,
                 consumerId:     userId
             }
         }).then(response => {
@@ -58,7 +58,7 @@ export default class GroupBuyActiveList extends React.Component {
                 params: {
                     method: 'LIST',
                     page: props.page,
-                    items_on_page: 5,
+                    items_on_page: 100,
                     consumerId: userId
                 }
             }).then(response => {
@@ -90,7 +90,7 @@ export default class GroupBuyActiveList extends React.Component {
 
                             <div key={index} className="zan-card zan-card-1 zan-container-content">
 
-                                <Link to={ item.groupBuy.consumers.length == 0 ? `/group-buy/product-detail/${item.groupBuy.groupBuyTemplate.product.id}` : `/group-buy/joined-consumer-list/${item.groupBuy.id}`}>
+                                <Link to={ !item.groupBuy.isJoined ? `/group-buy/join-product-detail/${item.groupBuy.groupBuyTemplate.product.id}/${item.groupBuy.id}` : `/group-buy/joined-consumer-list/${item.groupBuy.id}`}>
                                     <GroupBuyListProductName item={item}/>
 
                                     <div className="zan-wrap-content">
@@ -120,19 +120,33 @@ export default class GroupBuyActiveList extends React.Component {
                                                     <p>&nbsp;</p>
                                                 </div>
                                                 <div className="one-half last-column">
-                                                    { item.groupBuy.consumers.length > 0 && (
+                                                    {item.groupBuy.isJoined && (
                                                         <p style={{marginLeft: '10px', width: '90px'}}>
                                                             Joined
                                                             <span style={{paddingTop: '3px'}} className="fa fa-chevron-right" aria-hidden="true"></span>
                                                         </p>
-                                                    ) }
+                                                    )}
 
-                                                    { item.groupBuy.consumers.length == 0 && (
+                                                    { !item.groupBuy.isJoined && (
                                                         <p style={{marginLeft: '10px', width: '90px'}}>
-                                                            Group Buy
+                                                            Join
                                                             <span style={{paddingTop: '3px'}} className="fa fa-chevron-right" aria-hidden="true"></span>
                                                         </p>
                                                     ) }
+
+                                                    {/*{ item.groupBuy.consumers.length > 0 && (*/}
+                                                        {/*<p style={{marginLeft: '10px', width: '90px'}}>*/}
+                                                            {/*Joined*/}
+                                                            {/*<span style={{paddingTop: '3px'}} className="fa fa-chevron-right" aria-hidden="true"></span>*/}
+                                                        {/*</p>*/}
+                                                    {/*) }*/}
+
+                                                    {/*{ item.groupBuy.consumers.length == 0 && (*/}
+                                                        {/*<p style={{marginLeft: '10px', width: '90px'}}>*/}
+                                                            {/*Group Buy*/}
+                                                            {/*<span style={{paddingTop: '3px'}} className="fa fa-chevron-right" aria-hidden="true"></span>*/}
+                                                        {/*</p>*/}
+                                                    {/*) }*/}
                                                 </div>
                                             </div>
                                         </div>
