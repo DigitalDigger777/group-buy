@@ -4,5 +4,6 @@ src/js/components/deprecated/
 node_modules/
 .idea/
 src/js/components/Config.js
+src/js/components/ConfigStripe.js
 src/bundle.js
 doc/*
