@@ -71,56 +71,48 @@ export default class JoinProductDetail extends React.Component {
                     <div id="page-content" className="page-content fadeIn page-content show-containers">
                         <div id="page-content-scroll">
 
-                            <div className="content">
-                                <div className="zan-container-content">
-                                    <div className="zan-content-header">
-                                        <h2>
-                                            { this.state.item.name }
-                                        </h2>
-                                        {/*<h1 className="zan-red">{ this.state.item.name }</h1>*/}
-                                    </div>
-
-                                    <div className="zan-content">
-                                        <div className="zan-container zan-container-detail" style={{paddingTop: '0px', paddingBottom: '0px'}}>
+                            <section className="main-view">
+                                <div className="flexslider" style={{marginBottom:'10px'}}>
+                                    <ul className="slides">
+                                        <li>
                                             { this.state.item.images.length > 0 && (
-                                                <img src={`${config.baseImagePath}images/${this.state.item.images[0]}`} alt="" style={{width: '100%', paddingTop: '20px'}}/>
+                                                <img src={`${config.baseImagePath}images/${this.state.item.images[0]}`} />
                                             )}
 
-                                        </div>
-                                        <div className="zan-container zan-container-detail">
-                                            <b>Original Price: {this.state.item.price}$</b><br/>
-                                            {/*<em>{this.state.startTime}-{this.state.expiredTime}</em>*/}
-                                        </div>
-                                        <div className="zan-container zan-container-detail" style={{paddingTop: '0px', paddingBottom: '0px'}}>
-                                            <h2>Description:</h2>
-                                            <p>{ this.state.item.description }</p>
-                                        </div>
-                                        <div className="zan-content-footer">
-                                            <div className="center-text">
+                                            { this.state.item.images.length == 0 && (
+                                                <img src={`images/zan-images/no_photo_large.png`} />
+                                            )}
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div className="tm">
+                                    <form action="javascript:addToCart(221)" method="post" name="HHS_FORMBUY" id="HHS_FORMBUY">
+                                        <div className="td2">
+                                            <div className="td2_original_price">
+                                                <span>{this.state.item.price}$</span>
+                                                {/*<div className="mar_price"><del></del><del id="market_price">{this.state.item.price}$</del></div>*/}
+                                                {/*<div className="td2_sold_quantity"><span>累计销量：<i id="sold_quantity">0</i></span></div>*/}
+                                            </div>
+                                            <div className="td2_name">{this.state.name}</div>
+                                            <div className="td2_cx">
+                                                { this.state.item.description }
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <button id="redeemButton" className="btn btn-info" onClick={ (e, groupBuyId) => this.redeem(e, this.state.groupBuyId) } style={{ width: '100%', backgroundColor: '#887650', borderColor: '#887650'}}>Buy</button>
+                                            </div>
+                                            <div className="td2_info">
 
                                             </div>
+                                            <div className="td2_num">
+
+                                            </div>
+
                                         </div>
-                                    </div>
-
-                                    <div style={{textAlign:'center', padding: '20px'}}>
-                                        <button id="redeemButton" className="btn btn-info" onClick={ (e, groupBuyId) => this.redeem(e, this.state.groupBuyId) } style={{ width: '90%', backgroundColor: '#887650', borderColor: '#887650'}}>Buy</button>
-                                    </div>
-
-                                    {/*{!this.state.item.isRedeemed && this.state.daysLeft > 0 && (*/}
-                                        {/*<div style={{textAlign:'center', padding: '20px'}}>*/}
-                                            {/*<button id="redeemButton" className="btn btn-info" onClick={ this.redeem } style={{ width: '90%', backgroundColor: '#887650', borderColor: '#887650'}}>使用</button>*/}
-                                            {/*<p style={{marginBottom: '0px'}}>点击“使用”按钮，将会作废此优惠券。仅供商家使用！</p>*/}
-                                        {/*</div>*/}
-                                    {/*)}*/}
-
-                                    {/*{this.state.item.isRedeemed && (*/}
-                                        {/*<div style={{textAlign:'center', padding: '5px'}}>*/}
-                                            {/*<p style={{marginBottom: '0px'}}>This coupon is redeemed</p>*/}
-                                        {/*</div>*/}
-                                    {/*)}*/}
-
+                                    </form>
                                 </div>
-                            </div>
+                            </section>
 
                             <div className="footer footer-light">
 

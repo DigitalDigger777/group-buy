@@ -84,80 +84,53 @@ export default class GroupBuyActiveList extends React.Component {
         if (this.state.items.length > 0) {
 
             return (
-                <div>
-                    {
-                        this.state.items.map((item, index) =>
+                <div id="tuan" className="tuan">
+                    <div id="inner" style={{marginBottom: '100px'}}>
+                        {
+                            this.state.items.map((item, index) =>
 
-                            <div key={index} className="zan-card zan-card-1 zan-container-content">
+                                <div key={index} className="tuan_g">
 
-                                <Link to={ !item.groupBuy.isJoined ? `/group-buy/join-product-detail/${item.groupBuy.groupBuyTemplate.product.id}/${item.groupBuy.id}` : `/group-buy/joined-consumer-list/${item.groupBuy.id}`}>
-                                    <GroupBuyListProductName item={item}/>
+                                    <div className="tuan_g_img">
 
-                                    <div className="zan-wrap-content">
-                                        <strong>{item.groupBuy.groupBuyTemplate.product.name}</strong>
-                                        <p>Original Price: {item.groupBuy.groupBuyTemplate.product.price}$</p>
-                                        <p>Group Buy Price: {item.groupBuy.groupBuyTemplate.price}$</p>
-                                        <div>
-                                            {/*<i className="fa">*/}
-                                            {/*<img className="footer-menu-icon" src="images/zan-icon/coupon.png" width="24" height="24" alt=""/>*/}
-                                            {/*</i>*/}
-                                            <span className="qty">{ item.dateExpiredFormat}</span>
-                                            <hr style={{marginTop: '0px', marginBottom: '0px'}}/>
-                                            {/*{*/}
-                                                {/*JSON.parse(item.issued_coupon.source).headimgurl && (*/}
-                                                    {/*<div>*/}
-                                                        {/*/!*<img className="quote-image"*!/*/}
-                                                        {/*/!*src={ JSON.parse(item.issued_coupon.source).headimgurl } width={'30px'} alt=""/>*!/*/}
-                                                        {/*<p><b>收到: </b> {JSON.parse(item.issued_coupon.source).nickname}</p>*/}
-                                                    {/*</div>*/}
-                                                {/*)*/}
-                                            {/*}*/}
-                                            <hr style={{marginTop: '0px', marginBottom: '0px'}}/>
-                                            <div className="container" style={{marginBottom: '0px', paddingLeft: '0px'}}>
-                                                <div className="one-half" style={{width: '89px'}}>
-                                                    {/*{item.issued_coupon.isRedeemed && (<span className="label label-danger">赎回</span>)}*/}
-                                                    {/*{!item.issued_coupon.isRedeemed && (<p>&nbsp;</p>)}*/}
-                                                    <p>&nbsp;</p>
-                                                </div>
-                                                <div className="one-half last-column">
-                                                    {item.groupBuy.isJoined && (
-                                                        <p style={{marginLeft: '10px', width: '90px'}}>
-                                                            Joined
-                                                            <span style={{paddingTop: '3px'}} className="fa fa-chevron-right" aria-hidden="true"></span>
-                                                        </p>
-                                                    )}
+                                        <Link to={`/group-buy/product-detail/${item.groupBuy.groupBuyTemplate.product.id}/${item.groupBuy.groupBuyTemplate.id}`}>
+                                            <GroupBuyListProductName item={item}/>
+                                        </Link>
 
-                                                    { !item.groupBuy.isJoined && (
-                                                        <p style={{marginLeft: '10px', width: '90px'}}>
-                                                            Join
-                                                            <span style={{paddingTop: '3px'}} className="fa fa-chevron-right" aria-hidden="true"></span>
-                                                        </p>
-                                                    ) }
-
-                                                    {/*{ item.groupBuy.consumers.length > 0 && (*/}
-                                                        {/*<p style={{marginLeft: '10px', width: '90px'}}>*/}
-                                                            {/*Joined*/}
-                                                            {/*<span style={{paddingTop: '3px'}} className="fa fa-chevron-right" aria-hidden="true"></span>*/}
-                                                        {/*</p>*/}
-                                                    {/*) }*/}
-
-                                                    {/*{ item.groupBuy.consumers.length == 0 && (*/}
-                                                        {/*<p style={{marginLeft: '10px', width: '90px'}}>*/}
-                                                            {/*Group Buy*/}
-                                                            {/*<span style={{paddingTop: '3px'}} className="fa fa-chevron-right" aria-hidden="true"></span>*/}
-                                                        {/*</p>*/}
-                                                    {/*) }*/}
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                </Link>
+                                    <div className="tuan_g_info">
+                                        <p className="tuan_g_name">{item.groupBuy.groupBuyTemplate.product.name}</p>
+                                        <p className="tuan_g_cx"></p>
+                                    </div>
+                                    <div className="tuan_g_core">
+                                        <div className="tuan_g_core_img" style={{zIndex: '10', top: '5px'}}>
+                                            <img src="styles/haohaios/images/tuan_g_core-4935ae4c83.png" />
+                                        </div>
+                                        <div className="tuan_g_price">
+                                            <span>{item.groupBuy.groupBuyTemplate.minBuyingPerson}人团</span>
+                                            <b>{item.groupBuy.groupBuyTemplate.price}$</b>
+                                        </div>
+                                        {item.groupBuy.isJoined && (
+                                            <Link to={ `/group-buy/joined-consumer-list/${item.groupBuy.id}` }>
+                                                <div className="tuan_g_btn">Joined</div>
+                                            </Link>
+                                        )}
 
-                            </div>
-                        )
+                                        {!item.groupBuy.isJoined && (
+                                            <Link to={ `/group-buy/join-product-detail/${item.groupBuy.groupBuyTemplate.product.id}/${item.groupBuy.id}` }>
+                                                <div className="tuan_g_btn">Join</div>
+                                            </Link>
+                                        )}
+                                    </div>
+                                    {/*<div className="like goods_list_like">*/}
+                                    {/*<a href="javascript:collect(222)" className="like_click_button"></a>*/}
+                                    {/*</div>*/}
 
-                    }
+                                </div>
+                            )
 
+                        }
+                    </div>
                 </div>
             );
         } else {

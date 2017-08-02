@@ -28,15 +28,11 @@ export default class GroupBuyListProductName extends React.Component {
 
         if (this.state.item.groupBuy.groupBuyTemplate.product.images.length > 0) {
             return (
-                <div style={{width:'100px', float: 'left', marginTop: '8%'}}>
-                    <img  style={{width:'100px'}} className="preload-image" data-original={`${config.baseImagePath}logos/${this.state.item.groupBuy.groupBuyTemplate.product.images[0]}`} alt="img"/>
-                </div>
+                <img className="preload-image" style={{width:'100px'}} data-original={`${config.baseImagePath}logos/${this.state.item.groupBuy.groupBuyTemplate.product.images[0]}`} alt="img"/>
             );
         } else {
             return (
-                <div style={{width:'100px', float: 'left', marginTop: '20px', marginLeft: '20px'}}>
-                    <img className="preload-image" data-original={`images/zan-images/u150.png`} alt="img" />
-                </div>
+                <img className="preload-image" data-original={`images/zan-images/no_photo_large.png`} alt="img" />
             );
         }
     }

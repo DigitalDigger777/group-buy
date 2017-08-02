@@ -87,16 +87,16 @@ export default class ProductList extends React.Component {
             console.log(this.state.items);
             return (
                 <div id="tuan" className="tuan">
-                    <div id="inner">
+                    <div id="inner" style={{marginBottom: '100px'}}>
                         {
                             this.state.items.map((item, index) =>
 
                                 <div key={index} className="tuan_g">
 
                                     <div className="tuan_g_img">
-                                        <a href="goods.php?id=222&amp;uid=0">
+                                        <Link to={`/group-buy/product-detail/${item.groupBuyTemplate.product.id}/${item.groupBuyTemplate.id}`}>
                                             <ProductListProductName item={item}/>
-                                        </a>
+                                        </Link>
 
                                     </div>
                                     <div className="tuan_g_info">
@@ -104,8 +104,8 @@ export default class ProductList extends React.Component {
                                         <p className="tuan_g_cx"></p>
                                     </div>
                                     <div className="tuan_g_core">
-                                        <div className="tuan_g_core_img">
-                                            {/*<img src="images/haohaios/tuan_g_core-4935ae4c83.png" />*/}
+                                        <div className="tuan_g_core_img" style={{zIndex: '10', top: '5px'}}>
+                                            <img src="styles/haohaios/images/tuan_g_core-4935ae4c83.png" />
                                         </div>
                                         <div className="tuan_g_price">
                                             <span>{item.groupBuyTemplate.minBuyingPerson}人团</span>
