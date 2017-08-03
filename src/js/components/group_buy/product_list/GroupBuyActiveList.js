@@ -83,10 +83,12 @@ export default class GroupBuyActiveList extends React.Component {
     render(){
         if (this.state.items.length > 0) {
 
+
             return (
                 <div id="tuan" className="tuan">
                     <div id="inner" style={{marginBottom: '100px'}}>
                         {
+
                             this.state.items.map((item, index) =>
 
                                 <div key={index} className="tuan_g">
