@@ -126,102 +126,111 @@
 </head>
 <body>
 
-    <script src="https://js.stripe.com/v3/"></script>
+<script src="https://js.stripe.com/v3/"></script>
 
-    <form>
-        <label for="cardholder-name">Name</label>
-        <input name="cardholder-name" class="field" placeholder="Jane Doe" />
-        <label>Phone</label>
-        <input class="field" placeholder="(123) 456-7890" type="tel" />
-        <label>ZIP code</label>
-        <input name="address-zip" class="field" placeholder="94110" />
-        <label>Card</label>
-        <div id="card-element" class="field"></div>
-        <button type="submit">Pay</button>
+<form>
+    <label for="cardholder-name">Name</label>
+    <input name="cardholder-name" class="field" placeholder="Jane Doe" />
+    <label>Phone</label>
+    <input class="field" placeholder="(123) 456-7890" type="tel" />
+    <label>ZIP code</label>
+    <input name="address-zip" class="field" placeholder="94110" />
+    <label>Card</label>
+    <div id="card-element" class="field"></div>
+    <button type="submit">Pay</button>
 
-        <div class="outcome">
-            <div class="error" role="alert"></div>
-            <div class="success">
-                Success! Your Stripe token is <span class="token"></span>
-            </div>
+    <div class="outcome">
+        <div class="error" role="alert"></div>
+        <div class="success">
+            Success! Your Stripe token is <span class="token"></span>
         </div>
-    </form>
+    </div>
+</form>
 
-    <script>
-        (function ($) {
-            $('document').ready(function(){
-                var stripe = Stripe('pk_test_Rrkex0EsJiXPhtdONdIG9LcX');
-                var elements = stripe.elements();
+<script>
+    (function ($) {
+        $('document').ready(function(){
+            var stripe = Stripe('pk_test_Rrkex0EsJiXPhtdONdIG9LcX');
+            var elements = stripe.elements();
 
-                var card = elements.create('card', {
-                    style: {
-                        base: {
-                            iconColor: '#666EE8',
-                            color: '#31325F',
-                            lineHeight: '40px',
-                            fontWeight: 300,
-                            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                            fontSize: '15px',
-
-                            '::placeholder': {
-                                color: '#CFD7E0',
-                            },
-                        },
-                    }
-                });
-                card.mount('#card-element');
-
-                function setOutcome(result) {
-                    var successElement = document.querySelector('.success');
-                    var errorElement = document.querySelector('.error');
-                    successElement.classList.remove('visible');
-                    errorElement.classList.remove('visible');
-
-                    if (result.token) {
-                        // Use the token to create a charge or a customer
-                        // https://stripe.com/docs/charges
-                        //successElement.querySelector('.token').textContent = result.token.id;
-                        //successElement.classList.add('visible');
-
-                        $.ajax({
-                            url: configStripe.baseUrl + 'backend/group-buy/stripe',
-                            dataType: 'json',
-                            method: 'post',
-                            data: {
-                                userId: params.userId,
-                                groupBuyTemplateId: typeof params.groupBuyTemplateId != 'undefined' ? params.groupBuyTemplateId : 0,
-                                groupBuyId: typeof params.groupBuyId != 'undefined' ? params.groupBuyId : 0,
-                                stripeToken: result.token.id
-                            },
-                            success: function (data) {
-                                console.log(data);
-                                window.location = configStripe.baseFrontUrl;
-                            },
-                            error: function (error) {
-                                console.log(error);
-                            }
-                        });
-                    } else if (result.error) {
-                        errorElement.textContent = result.error.message;
-                        errorElement.classList.add('visible');
-                    }
-                }
-
-                card.on('change', function(event) {
-                    setOutcome(event);
-                });
-
-                document.querySelector('form').addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    var form = document.querySelector('form');
-                    var extraDetails = {
-                        name: form.querySelector('input[name=cardholder-name]').value,
-                    };
-                    stripe.createToken(card, extraDetails).then(setOutcome);
-                });
+            var searchParams = window.location.search.match(/([A-Za-z]+=[0-9]+)/g);
+            var params = {};
+            searchParams.map(function (val) {
+                var item = val.split('=');
+                params[item[0]] = item[1];
             });
-        })(jQuery)
 
-    </script>
+            var card = elements.create('card', {
+                style: {
+                    base: {
+                        iconColor: '#666EE8',
+                        color: '#31325F',
+                        lineHeight: '40px',
+                        fontWeight: 300,
+                        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                        fontSize: '15px',
+
+                        '::placeholder': {
+                            color: '#CFD7E0',
+                        },
+                    },
+                }
+            });
+            card.mount('#card-element');
+
+            function setOutcome(result) {
+                var successElement = document.querySelector('.success');
+                var errorElement = document.querySelector('.error');
+                successElement.classList.remove('visible');
+                errorElement.classList.remove('visible');
+
+                if (result.token) {
+                    // Use the token to create a charge or a customer
+                    // https://stripe.com/docs/charges
+                    //successElement.querySelector('.token').textContent = result.token.id;
+                    //successElement.classList.add('visible');
+
+                    $.ajax({
+                        url: configStripe.baseUrl + 'backend/group-buy/stripe',
+                        dataType: 'json',
+                        method: 'post',
+                        data: {
+                            userId: params.userId,
+                            groupBuyTemplateId: typeof params.groupBuyTemplateId != 'undefined' ? params.groupBuyTemplateId : 0,
+                            groupBuyId: typeof params.groupBuyId != 'undefined' ? params.groupBuyId : 0,
+                            stripeToken: result.token.id
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            window.location = configStripe.baseFrontUrl;
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                } else if (result.error) {
+                    errorElement.textContent = result.error.message;
+                    errorElement.classList.add('visible');
+                }
+            }
+
+            card.on('change', function(event) {
+                setOutcome(event);
+            });
+
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                var form = document.querySelector('form');
+                var extraDetails = {
+                    name: form.querySelector('input[name=cardholder-name]').value,
+                };
+                stripe.createToken(card, extraDetails).then(setOutcome);
+                $('button[type="submit"]').text('Please wail..');
+                $('button[type="submit"]').attr('disabled', 'disabled');
+            });
+        });
+    })(jQuery)
+
+</script>
 </body>
 </html>
