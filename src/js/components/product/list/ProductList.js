@@ -100,7 +100,12 @@ export default class ProductList extends React.Component {
 
                                     </div>
                                     <div className="tuan_g_info">
-                                        <p className="tuan_g_name">{item.groupBuyTemplate.product.name}</p>
+                                        <p className="tuan_g_name">
+                                            {item.groupBuyTemplate.product.name}
+                                        </p>
+                                        <p className="tuan_g_name">
+                                            Exp. {item.dateExpiredFormat}
+                                        </p>
                                         <p className="tuan_g_cx"></p>
                                     </div>
                                     <div className="tuan_g_core">

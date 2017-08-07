@@ -28,7 +28,7 @@ export default class ProductListProductName extends React.Component {
 
         if (this.state.item.groupBuyTemplate.product.images.length > 0) {
             return (
-                <img  className="preload-image" style={{width:'100px', display: 'block' }} data-original={`${config.baseImagePath}logos/${this.state.item.groupBuyTemplate.product.images[0]}`} alt="img"/>
+                <img  className="preload-image" style={{width:'100%', display: 'block' }} data-original={`${config.baseImagePath}images/${this.state.item.groupBuyTemplate.product.images[0]}`} alt="img"/>
             );
         } else {
             return (

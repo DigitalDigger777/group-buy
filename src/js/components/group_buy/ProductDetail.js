@@ -76,7 +76,7 @@ export default class ProductDetail extends React.Component {
                                     <ul className="slides">
                                         <li>
                                             { this.state.item.images.length > 0 && (
-                                                <img src={`${config.baseImagePath}images/${this.state.item.images[0]}`} />
+                                                <img src={`${config.baseImagePath}images/${this.state.item.images[0]}`} style={{width: '100%'}} />
                                             )}
 
                                             { this.state.item.images.length == 0 && (
